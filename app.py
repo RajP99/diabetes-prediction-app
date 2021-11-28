@@ -5,7 +5,11 @@ import traceback
 
 app = Flask(__name__)
 
-@app.route('/', methods=['POST'])
+@app.route("/", methods=['GET'])
+def hello():
+    return "hey"
+
+@app.route('/predict', methods=['POST'])
 def predict():
 	try:
 		# json = request.get_json()	 
