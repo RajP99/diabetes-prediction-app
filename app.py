@@ -12,9 +12,8 @@ def hello():
 @app.route('/predict', methods=['POST'])
 def predict():
 	try:
-		# json = request.get_json()	 
-		# temp=list(json[0].values())
-		temp = [148, 72, 0, 33.6, 50]
+		json = request.get_json()	 
+		temp=list(json[0].values())
 		rf = pickle.load(open('rf_baseline.pkl', 'rb'))
 		prediction = rf.predict_proba([temp])
 		print("Prediction: ", prediction)        
