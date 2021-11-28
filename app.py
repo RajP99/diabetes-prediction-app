@@ -8,12 +8,11 @@ app = Flask(__name__)
 @app.route('/', methods=['POST'])
 def predict():
 	try:
-		json = request.get_json()	 
+		# json = request.get_json()	 
 		# temp=list(json[0].values())
 		temp = [148, 72, 0, 33.6, 50]
-		dest = 'models\pkl_objects'
-    		rf = pickle.load(open('rf_baseline.pkl', 'rb'))
-		prediction = rf.predict_proba([input_values])
+		rf = pickle.load(open('rf_baseline.pkl', 'rb'))
+		prediction = rf.predict_proba([temp])
 		print("Prediction: ", prediction)        
 		return jsonify({'prediction': str(prediction[0])})
 
