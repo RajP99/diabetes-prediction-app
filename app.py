@@ -5,19 +5,15 @@ import traceback
 
 app = Flask(__name__)
 
-def make_prediction(input_values):
-    dest = 'models\pkl_objects'
-    rf = pickle.load(open(os.path.join(dest, 'rf_baseline.pkl'), 'rb'))
-
-    return rf.predict_proba([input_values])
-
 @app.route('/', methods=['POST'])
 def predict():
 	try:
 		json = request.get_json()	 
 		# temp=list(json[0].values())
 		temp = [148, 72, 0, 33.6, 50]
-		prediction = make_prediction(temp)
+		dest = 'models\pkl_objects'
+    		rf = pickle.load(open(os.path.join(dest, 'rf_baseline.pkl'), 'rb'))
+		prediction = rf.predict_proba([input_values])
 		print("Prediction: ", prediction)        
 		return jsonify({'prediction': str(prediction[0])})
 
