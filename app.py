@@ -11,7 +11,7 @@ def make_prediction(input_values):
 
     return rf.predict_proba([input_values])
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['POST'])
 def predict():
 	try:
 		json = request.get_json()	 
