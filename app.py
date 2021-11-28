@@ -17,7 +17,7 @@ def predict():
 		rf = pickle.load(open('rf_baseline.pkl', 'rb'))
 		prediction = rf.predict_proba([temp])
 		print("Prediction: ", prediction)        
-		return jsonify({'prediction': str(prediction[0][1])})
+		return jsonify({'prediction': str(prediction[0][1]*100)})
 
 	except:        
 		return jsonify({'trace': traceback.format_exc()})
